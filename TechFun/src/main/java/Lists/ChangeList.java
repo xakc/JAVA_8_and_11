@@ -40,7 +40,7 @@ public class ChangeList {
                     break;
 
                 case "Insert":
-                    int number = Integer.parseInt(commands[1]);
+                    number = Integer.parseInt(commands[1]);
                     int position = Integer.parseInt(commands[2]);
                     nums.add(position,number);
                     break;
