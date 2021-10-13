@@ -36,8 +36,9 @@ public class CountRealNumbers {
             result.put(num,previousValue+1);
         }
 
+        String pattern = "%.0f -> %d%n";
         for (Map.Entry<Double,Integer> kvp: result.entrySet()) {
-            System.out.println(kvp.getKey()+ " -> "+ kvp.getValue());
+            System.out.printf(String.format(pattern,kvp.getKey(),kvp.getValue()));
         };
     }
 
