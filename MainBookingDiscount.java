@@ -13,17 +13,37 @@ public class MainBookingDiscount {
         int numberOfDays = Integer.parseInt(input[1]);
         String season = input[2];
         String discountType = input[3];
+        double multiplier = 1;
 
-        int multiplier = switch (season) {
-            case "Autumn" -> 1;
-            case "Spring" -> 2;
-            case "Winter" -> 3;
-            case "Summer" -> 4;
+        switch (season) {
+            case "Autumn":
+                multiplier = 1;
+                break;
+            case "Spring":
+                multiplier = 2;
+                break;
+            case "Winter":
+                multiplier=3;
+                break;
 
-            default -> throw new IllegalArgumentException("No such season" + season);
+            case "Summer":
+                multiplier=4;
+                break;
+
+            default:
+                throw new IllegalArgumentException("There is no such "+season);
         };
 
+        double percentDiscount = 0;
 
+        if (discountType.equals("VIP")) {
+            percentDiscount=20;
+        } else  if (discountType.equals("SecondVisit")) {
+            percentDiscount=10;
+        }
 
+        double totalPrice = priceDay * numberOfDays * multiplier (1-percentDiscount)
+
+        //have to fix it    
     }
 }
