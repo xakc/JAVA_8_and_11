@@ -1,41 +1,42 @@
-package com.n3;
+package com.n3.Encapsulation.SortByNameAndAge;
 
-import java.io.ByteArrayInputStream;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
 
-    public static void TestInput() {
-        String input = "10"
-               ;
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-    }
-    public static void main(String[] args) {
-        TestInput();
+    public static void main(String[] args) throws IOException {
 
-        Scanner s = new Scanner(System.in);
-        int input  = Integer.parseInt(s.nextLine());
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        Deque<Integer> stack = new ArrayDeque<>();
+        int n = Integer.parseInt(reader.readLine());
 
-        if (input=0) {
-            System.out.print(0);
+        List<PersonSort> people = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            String[] input = reader.readLine().split("\\s+");
+            people.add(new PersonSort(input[0],"NoProvided",input[2],Double.parseDouble(input[3])));
         }
 
-        while (input>0){
-            stack.push(input % 2);
-            input /=2;
+        Collections.sort(people, (firstPerson,secondPerson) -> {
+            int isComp = firstPerson.getFirstName().compareTo(secondPerson.getFirstName());
+
+            if (isComp!=0) {
+                return isComp;
+            }else {
+                return Double.compare(firstPerson.getAge(), secondPerson.getAge());
+            }
+
+        });
+
+        for (PersonSort person : people) {
+            System.out.println(person.toString());
         }
 
-        int  stackSize = stack.size();
-        for (int i = 0; i <stackSize ; i++) {
-            System.out.print(stack.pop());
-        }
-
-
-        System.out.println(input);
     }
 }
